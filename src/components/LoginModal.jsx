@@ -1,4 +1,13 @@
+"use client";
+import { authClient } from "@/lib/auth-client";
+
 export default function LoginModal() {
+  const signIn = async () => {
+    const data = await authClient.signIn.social({
+      provider: "google",
+    });
+  };
+
   return (
     <dialog id="login_modal" className="modal">
       <div className="modal-box flex flex-col items-center justify-center gap-4 py-8">
@@ -7,8 +16,8 @@ export default function LoginModal() {
             ✕
           </button>
         </form>
-        <h3 className="font-bold text-lg">Get Ready to track your products</h3>
-        <button className="btn border border-solid border-black/50 rounded-md bg-none">
+        <h3 className="font-bold text-lg">Get ready to track your products</h3>
+        <button onClick={signIn} className="btn border border-solid border-black/50 rounded-md bg-none">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             height="24"
