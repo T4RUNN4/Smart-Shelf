@@ -1,4 +1,6 @@
-import { LogOut, Plus } from "lucide-react";
+"use client";
+
+import { LogIn, LogOut, Plus, UserPlus } from "lucide-react";
 import Link from "next/link";
 
 export default function Navbar() {
@@ -13,10 +15,20 @@ export default function Navbar() {
         </p>
       </div>
       <div className="navbar-end gap-1">
-        <a className="btn btn-primary bg-[#738f6d] border-0 text-white">
+        <button
+          onClick={() => document.getElementById("login_modal").showModal()}
+          className="btn btn-primary bg-[#738f6d] border-0 text-white"
+        >
+          <UserPlus /> Register
+        </button>
+        <button
+          onClick={() => document.getElementById("login_modal").showModal()} className="btn btn-ghost">
+          <LogIn /> Log In
+        </button>
+        {/* <a className="btn btn-primary bg-[#738f6d] border-0 text-white">
           <Plus /> Add Item
         </a>
-        <a className="btn btn-error text-white"><LogOut /> Logout</a>
+        <a className="btn btn-error text-white"><LogOut /> Logout</a> */}
       </div>
     </div>
   );
