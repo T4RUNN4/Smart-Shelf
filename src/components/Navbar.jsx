@@ -16,7 +16,6 @@ export default function Navbar() {
     router.refresh();
   };
 
-
   return (
     <div className="navbar bg-base-100 shadow-sm py-6 px-40">
       <div className="navbar-start flex flex-col gap-0.5 items-start">
@@ -73,9 +72,4 @@ export default function Navbar() {
       </div>
     </div>
   );
-}
-
-{
-  /*
-   */
 }
