@@ -16,7 +16,7 @@ export default function AddProductsModal() {
     reset,
   } = useForm();
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     const formattedData = {
       ...data,
       productNote: data.productNote || "No note added",
@@ -29,10 +29,19 @@ export default function AddProductsModal() {
         addDays(new Date(data.productExpiryDate), 30),
         "MM/dd/yyyy",
       ),
-      user: user.email,
+      user: user?.email,
     };
-    console.log(formattedData);
-    // reset();
+    
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/products`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formattedData),
+    });
+
+    const result = await res.json();
+    console.log(result)
   };
 
   const handleClear = () => {
