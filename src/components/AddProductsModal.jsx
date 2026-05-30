@@ -4,10 +4,12 @@ import { Plus } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { authClient } from "@/lib/auth-client";
 import { addDays, format, subDays } from "date-fns";
+import { useRouter } from "next/navigation";
 
 export default function AddProductsModal() {
   const { data: session } = authClient.useSession();
   const user = session?.user;
+  const router = useRouter();
 
   const {
     register,
@@ -40,8 +42,9 @@ export default function AddProductsModal() {
       body: JSON.stringify(formattedData),
     });
 
-    const result = await res.json();
-    console.log(result)
+    reset();
+    document.getElementById("add_products_modal").close();
+    router.refresh();
   };
 
   const handleClear = () => {
