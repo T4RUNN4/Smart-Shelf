@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import LoginModal from "@/components/LoginModal";
+import AddProductsModal from "@/components/AddProductsModal";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -27,6 +28,7 @@ export default function RootLayout({ children }) {
         <main className="py-10 px-40">{children}</main>
         <Footer />
         <LoginModal />
+        <AddProductsModal />
       </body>
     </html>
   );
