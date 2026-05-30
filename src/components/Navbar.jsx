@@ -3,11 +3,19 @@
 import { authClient } from "@/lib/auth-client";
 import { LogIn, LogOut, Plus, UserPlus } from "lucide-react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 export default function Navbar() {
   const { data } = authClient.useSession();
   const pathname = usePathname();
+
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    await authClient.signOut();
+    router.refresh();
+  };
+
 
   return (
     <div className="navbar bg-base-100 shadow-sm py-6 px-40">
@@ -38,8 +46,13 @@ export default function Navbar() {
         ) : (
           <>
             {pathname === "/dashboard" ? (
-              <button className="btn btn-primary bg-[#738f6d] border-0 text-white">
-                <Plus /> Add Item
+              <button
+                onClick={() =>
+                  document.getElementById("add_products_modal").showModal()
+                }
+                className="btn btn-primary bg-[#738f6d] border-0 text-white"
+              >
+                <Plus /> Add Product
               </button>
             ) : (
               <Link
@@ -50,7 +63,7 @@ export default function Navbar() {
               </Link>
             )}
             <button
-              onClick={async () => await authClient.signOut()}
+              onClick={handleLogout}
               className="btn btn-error text-white"
             >
               <LogOut /> Logout
