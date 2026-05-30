@@ -3,6 +3,7 @@
 import { Plus } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { authClient } from "@/lib/auth-client";
+import { addDays, format, subDays } from "date-fns";
 
 export default function AddProductsModal() {
   const { data: session } = authClient.useSession();
@@ -19,8 +20,15 @@ export default function AddProductsModal() {
     const formattedData = {
       ...data,
       productNote: data.productNote || "No note added",
-      productExpiryDate: new Date(data.productExpiryDate),
-      deleteDate: deleteDate.setDate(productExpiryDate.getDate() + 30),
+      expiryWarningDate: format(
+        subDays(new Date(data.productExpiryDate), 3),
+        "MM/dd/yyyy",
+      ),
+      productExpiryDate: format(new Date(data.productExpiryDate), "MM/dd/yyyy"),
+      deleteProductDate: format(
+        addDays(new Date(data.productExpiryDate), 30),
+        "MM/dd/yyyy",
+      ),
       user: user.email,
     };
     console.log(formattedData);
