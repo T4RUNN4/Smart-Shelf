@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { authClient } from "@/lib/auth-client";
 import { addDays, format, subDays } from "date-fns";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 export default function AddProductsModal() {
   const { data: session } = authClient.useSession();
@@ -42,9 +43,16 @@ export default function AddProductsModal() {
       body: JSON.stringify(formattedData),
     });
 
-    reset();
-    document.getElementById("add_products_modal").close();
-    router.refresh();
+    const result = await res.json();
+    if(result.acknowledged === true) {
+      toast.success(`${data.productName} added for tracking`);
+      reset();
+      document.getElementById("add_products_modal").close();
+      router.refresh();
+    } else {
+      toast.error("There is an issue. Please try again");
+    }
+
   };
 
   const handleClear = () => {

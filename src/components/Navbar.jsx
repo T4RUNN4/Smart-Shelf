@@ -4,6 +4,7 @@ import { authClient } from "@/lib/auth-client";
 import { LogIn, LogOut, Plus, UserPlus } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 export default function Navbar() {
   const { data } = authClient.useSession();
@@ -12,8 +13,14 @@ export default function Navbar() {
   const router = useRouter();
 
   const handleLogout = async () => {
-    await authClient.signOut();
-    router.refresh();
+    const response = await authClient.signOut();
+
+    if(response.data.success === true) {
+      toast.success("Logged out successfully");
+      router.push('/');
+    } else {
+      toast.error("Something went wrong");
+    }
   };
 
   return (

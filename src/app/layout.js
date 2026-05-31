@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import LoginModal from "@/components/LoginModal";
 import AddProductsModal from "@/components/AddProductsModal";
+import { ToastContainer } from "react-toastify";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -29,6 +30,7 @@ export default function RootLayout({ children }) {
         <Footer />
         <LoginModal />
         <AddProductsModal />
+        <ToastContainer />
       </body>
     </html>
   );

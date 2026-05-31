@@ -2,6 +2,7 @@
 import { addDays, compareAsc, format, startOfToday } from "date-fns";
 import { CalendarDays, Pencil, Trash } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 export default function ProductCard({ product }) {
   const router = useRouter();
@@ -27,8 +28,14 @@ export default function ProductCard({ product }) {
         method: "DELETE",
       },
     );
-
-    router.refresh();
+    const result = await response.json();
+    
+    if(result.acknowledged === true) {
+      toast.success(`${product.productName} is removed from tracking`);
+      router.refresh();
+    } else {
+      toast.error("There is a issue. Please try again");
+    }
   };
 
   return (

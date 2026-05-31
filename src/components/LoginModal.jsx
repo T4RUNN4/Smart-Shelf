@@ -2,6 +2,7 @@
 import { authClient } from "@/lib/auth-client";
 
 export default function LoginModal() {
+  
   const signIn = async () => {
     const data = await authClient.signIn.social({
       provider: "google",
