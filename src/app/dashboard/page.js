@@ -1,31 +1,19 @@
-import DashboardInfo from "@/sections/DashboardInfo";
-import ProductList from "@/sections/ProductList";
-import { Funnel, Search } from "lucide-react";
+import { headers } from "next/headers";
+import { auth } from "@/lib/auth";
+import ProductListClient from "@/components/ProductListClient";
 
-export default function Dashboard() {
+export default async function Dashboard() {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+  const userEmail = session?.user?.email;
+
+  const productsPromise = await fetch(
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}/products?user=${userEmail}`,
+  );
+  const products = await productsPromise.json();
+
   return (
-    <>
-      <DashboardInfo />
-      <div className="flex justify-between mt-14 mb-4">
-        <div className="flex gap-3">
-          <label className="input">
-            <input type="search" required placeholder="Napa Extra" />
-          </label>
-          <button className="btn btn-primary bg-[#738f6d] border-0 text-white">
-            <Search /> Search Product
-          </button>
-        </div>
-        <details className="dropdown">
-          <summary className="btn m-1"><Funnel /> Filter Products</summary>
-          <ul className="menu dropdown-content bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm pl-6 py-4 flex flex-col gap-2">
-            <li>All Products</li>
-            <li>Fresh Products</li>
-            <li>Expiring Products</li>
-            <li>Expired Products</li>
-          </ul>
-        </details>
-      </div>
-      <ProductList />
-    </>
+    <ProductListClient products={products} />
   );
 }
