@@ -1,8 +1,10 @@
+"use client";
 import { addDays, compareAsc, format, startOfToday } from "date-fns";
 import { CalendarDays, Pencil, Trash } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export default function ProductCard({ product }) {
-  
+  const router = useRouter();
   const today = startOfToday();
   const expiryDate = new Date(product.productExpiryDate);
 
@@ -17,7 +19,18 @@ export default function ProductCard({ product }) {
   } else {
     status = "not expired";
   }
-  
+
+  const handleDelete = async () => {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/products/${product._id}`,
+      {
+        method: "DELETE",
+      },
+    );
+
+    router.refresh();
+  };
+
   return (
     <div className="border border-solid border-black/30 rounded-lg flex flex-col gap-2 justify-center px-8 py-6 bg-base-100">
       <div className="flex items-center justify-between mb-4">
@@ -28,7 +41,10 @@ export default function ProductCard({ product }) {
           <button className="text-black/50 btn btn-ghost">
             <Pencil size={18} />
           </button>
-          <button className="text-red-400 hover:text-red-600 btn btn-ghost">
+          <button
+            onClick={handleDelete}
+            className="text-red-400 hover:text-red-600 btn btn-ghost"
+          >
             <Trash size={18} />
           </button>
         </div>
@@ -47,8 +63,12 @@ export default function ProductCard({ product }) {
       </p>
 
       {status === "expired" ? (
-        <p className="text-red-400 text-sm font-bold mt-4">
-          Warning: Expired products will be removed after 30 days
+        <p className="text-red-400 text-sm font-medium mt-4">
+          Expired products will be removed after 30 days
+        </p>
+      ) : status === "expiring" ? (
+        <p className="text-yellow-500 text-sm font-medium mt-4">
+          {product.productName} is about to expire
         </p>
       ) : (
         ""
