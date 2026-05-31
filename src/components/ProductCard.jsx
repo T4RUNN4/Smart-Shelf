@@ -71,7 +71,7 @@ export default function ProductCard({ product }) {
 
       {status === "expired" ? (
         <p className="text-red-400 text-sm font-medium mt-4">
-          Expired products will be removed after 30 days
+          {product.productName} is to expired
         </p>
       ) : status === "expiring" ? (
         <p className="text-yellow-500 text-sm font-medium mt-4">

@@ -24,7 +24,7 @@ export default function Navbar() {
   };
 
   return (
-    <div className="navbar bg-base-100 shadow-sm py-6 px-40">
+    <div className="navbar bg-base-100 shadow-sm py-6 px-10 md:px-20 lg:px-40">
       <div className="navbar-start flex flex-col gap-0.5 items-start">
         <Link href="/" className="text-3xl font-extrabold">
           <span className="text-[#738f6d]">Smart</span> Shelf

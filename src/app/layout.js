@@ -26,7 +26,7 @@ export default function RootLayout({ children }) {
     >
       <body className="min-h-full flex flex-col">
         <Navbar />
-        <main className="py-10 px-40">{children}</main>
+        <main className="py-10 px-10 md:px-20 lg:px-40">{children}</main>
         <Footer />
         <LoginModal />
         <AddProductsModal />
