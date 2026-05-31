@@ -1,7 +1,7 @@
 "use client";
 
 import { authClient } from "@/lib/auth-client";
-import { LogIn, LogOut, Plus, UserPlus } from "lucide-react";
+import { LayoutDashboard, LogIn, LogOut, Plus, UserPlus } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { toast } from "react-toastify";
@@ -65,7 +65,7 @@ export default function Navbar() {
                 href="/dashboard"
                 className="btn btn-primary bg-[#738f6d] border-0 text-white"
               >
-                Dashboard
+                <LayoutDashboard /> Dashboard
               </Link>
             )}
             <button

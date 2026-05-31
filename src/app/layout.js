@@ -24,7 +24,7 @@ export default function RootLayout({ children }) {
       lang="en"
       className={`${inter.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-base-200">
+      <body className="min-h-full flex flex-col">
         <Navbar />
         <main className="py-10 px-40">{children}</main>
         <Footer />
