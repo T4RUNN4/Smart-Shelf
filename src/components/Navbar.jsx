@@ -7,7 +7,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 
 export default function Navbar() {
-  const { data } = authClient.useSession();
+  const { data, isPending } = authClient.useSession();
   const pathname = usePathname();
 
   const router = useRouter();
@@ -25,11 +25,13 @@ export default function Navbar() {
 
   return (
     <div className="navbar bg-base-100 shadow-sm py-6 px-10 md:px-20 lg:px-40 flex flex-col md:flex-row md:justify-between items-center justify-center gap-4">
-        <Link href="/" className="text-3xl font-extrabold">
-          <span className="text-[#738f6d]">Smart</span> Shelf
-        </Link>
+      <Link href="/" className="text-3xl font-extrabold">
+        <span className="text-[#738f6d]">Smart</span> Shelf
+      </Link>
       <div className="flex gap-2">
-        {!data ? (
+        {isPending ? (
+          <span className="loading loading-spinner loading-md"></span>
+        ) : !data ? (
           <>
             <button
               onClick={() => document.getElementById("login_modal").showModal()}
@@ -63,10 +65,7 @@ export default function Navbar() {
                 <LayoutDashboard /> Dashboard
               </Link>
             )}
-            <button
-              onClick={handleLogout}
-              className="btn btn-error text-white"
-            >
+            <button onClick={handleLogout} className="btn btn-error text-white">
               <LogOut /> Logout
             </button>
           </>

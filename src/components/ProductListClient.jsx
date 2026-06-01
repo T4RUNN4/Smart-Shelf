@@ -23,14 +23,18 @@ export default function ProductListClient({ products }) {
           {...register("keyword", { required: true })}
         />
       </label>
-      <div className="flex gap-3 items-center justify-center border border-solid border-red-400 rounded-md p-4 mt-4 mb-6 text-red-400 text-xs sm:text-sm font-bold">
-        <MessageCircleWarning /> Warning: Expired products will automatically be deleted from the list after 30 days
-      </div>
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
-        {filteredProducts.map((product) => (
-          <ProductCard key={product._id} product={product} />
-        ))}
-      </div>
+      {filteredProducts.length > 0 ? (
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
+          {filteredProducts.map((product) => (
+            <ProductCard key={product._id} product={product} />
+          ))}
+        </div>
+      ) : (
+        <div className="flex flex-col items-center justify-center gap-2 mt-10 border-2 border-dotted border-gray-300 rounded-lg p-6">
+          <MessageCircleWarning size={48} className="text-gray-400" />
+          <p className="text-gray-400 text-sm">No products found.</p>
+        </div>
+      )}
     </>
   );
 }

@@ -44,17 +44,12 @@ export default function ProductCard({ product }) {
         <p className="text-sm text-black/50">
           {product.productCategory.toUpperCase()}
         </p>
-        <div className="flex">
-          <button className="text-black/50 btn btn-ghost">
-            <Pencil size={18} />
-          </button>
           <button
             onClick={handleDelete}
             className="text-red-400 hover:text-red-600 btn btn-ghost"
           >
             <Trash size={18} />
           </button>
-        </div>
       </div>
       <h1
         className={`text-2xl ${status === "expired" ? "text-red-500" : status === "expiring" ? "text-yellow-500" : "text-[#738f6d]"} font-black flex items-center gap-2`}

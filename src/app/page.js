@@ -18,7 +18,7 @@ export default function Home() {
   return (
     <>
       <div className="flex flex-col lg:flex-row items-center justify-center gap-18 mt-20">
-        <Image src={Hero} height={500} width={500} />
+        <Image alt="Man frustrated about expired products" src={Hero} height={500} width={500} />
         <div className="flex flex-col justify-center mx-auto">
           <h2 className="text-3xl md:text-5xl font-bold text-[#738f6d] text-center lg:text-left">
             Tired Of Products Getting Expired?
