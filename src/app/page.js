@@ -19,16 +19,16 @@ export default function Home() {
     <>
       <div className="flex flex-col lg:flex-row items-center justify-center gap-18 mt-20">
         <Image src={Hero} height={500} width={500} />
-        <div className="flex flex-col justify-center">
-          <h2 className="text-3xl md:text-5xl font-bold text-[#738f6d] text-center md:text-left">
+        <div className="flex flex-col justify-center mx-auto">
+          <h2 className="text-3xl md:text-5xl font-bold text-[#738f6d] text-center lg:text-left">
             Tired Of Products Getting Expired?
           </h2>
-          <p className="text-black/70 mt-6 mb-8 max-w-lg lg:max-w-4xl text-sm md:text-base text-center md:text-left">
+          <p className="text-black/70 mt-6 mb-8 max-w-lg md:max-w-xl lg:max-w-4xl text-sm md:text-base text-center lg:text-left">
             Well, just sign-up, add products and let{" "}
             <span className="font-bold text-[#738f6d]">Smart Shelf</span> handle
             that for you. You will be notified when the day approaching
           </p>
-          <div className="flex gap-4">
+          <div className="flex items-center justify-center lg:justify-start gap-4">
             <button
               onClick={() => document.getElementById("login_modal").showModal()}
               className="btn btn-primary bg-[#738f6d] border-0 text-white"

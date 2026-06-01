@@ -24,16 +24,11 @@ export default function Navbar() {
   };
 
   return (
-    <div className="navbar bg-base-100 shadow-sm py-6 px-10 md:px-20 lg:px-40">
-      <div className="navbar-start flex flex-col gap-0.5 items-start">
+    <div className="navbar bg-base-100 shadow-sm py-6 px-10 md:px-20 lg:px-40 flex flex-col md:flex-row md:justify-between items-center justify-center gap-4">
         <Link href="/" className="text-3xl font-extrabold">
           <span className="text-[#738f6d]">Smart</span> Shelf
         </Link>
-        <p className="text-sm text-black/50">
-          Never forget your products expiration date
-        </p>
-      </div>
-      <div className="navbar-end gap-1">
+      <div className="flex gap-2">
         {!data ? (
           <>
             <button
