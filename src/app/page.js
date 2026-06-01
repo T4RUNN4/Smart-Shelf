@@ -29,18 +29,12 @@ export default function Home() {
             that for you. You will be notified when the day approaching
           </p>
           <div className="flex items-center justify-center lg:justify-start gap-4">
-            <button
-              onClick={() => document.getElementById("login_modal").showModal()}
-              className="btn btn-primary bg-[#738f6d] border-0 text-white"
-            >
-              <UserPlus /> Register
-            </button>
             <Link
-              href="/dashboard"
-              className="btn btn-ghost border-2 border-gray-300"
-            >
-              Get Started <MoveRight />
-            </Link>
+                href="/dashboard"
+                className="btn btn-primary bg-[#738f6d] border-0 text-white"
+              >
+                Get Started <MoveRight />
+              </Link>
           </div>
         </div>
       </div>
